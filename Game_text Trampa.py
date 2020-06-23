@@ -1,8 +1,14 @@
 import random
+import sys
+import os
 
 personaje={}
 
 Equipo = {"Armadura":"Cota de mallas","Arma":"Antigua espada larga"}
+
+def pocion_cura():
+    cura = random.randint(1,6)
+    personaje["vida"] += cura
 
 def entrada2():
   print ("Etrada")
@@ -10,9 +16,8 @@ def entrada2():
   print ("")
   print ("el pasadizo occidental huele a paja y moho, pero esta limpio de telarañas")
   creaLootbox()
-  direc = input ("(pasadizos oriental/pasadizo occidental) :")
+  direc = input ("(pasadizo oriental/pasadizo occidental) :")
   if direc == "pasadizo oriental":
-
     pasillo_oriental()
   elif direc == "pasadizo occidental":
     pasillo_occidental()
@@ -21,12 +26,28 @@ def trampa():
   print ("Viendo que no hay monstruos en la habitación, avanzas hacia las escaleras mientras vas recogiendo monedas")
   print ("por el camino. A media habitación tu pie se engancha en un alambre oculto y de repente un chorro de llamas")
   print ("sa disparado de la boca del demonio, ¡directamente hacia ti!")
-  daño_trampa = random.randint(2,6)
+  daño_trampa = random.randint(2,4)
   personaje["vida"] -= daño_trampa
-  if vida <= 0: 
-   print("Ruedas para apagar las llamas pero finalmente terminas envuelto en ellas")
-   print("Estas muerto")
   printestado()
+  if personaje["vida"] <= 0: 
+    print("Ruedas para apagar las llamas pero finalmente terminas envuelto en ellas")
+    print("Estas muerto")
+    printestado()
+    sys.exit()
+  else:
+      print("El fuego te quemo un poco pero conseguiste sobrevivir y cuentas tu botin")
+      print("la estatua continua como si nada y las escaleras abajo ")
+      print("¿Estas preparado para explorar el nivel inferior?")
+      print ("")
+      direc = input ("(regresar/bajar escaleras ):")
+      monedas = random.randint (2,9)
+      personaje["dinero"] += monedas
+      printestado()
+      if direc == "regresar":
+       entrada2()
+       
+      elif direc == "bajar escaleras":
+       entrada2()
 
 def escalera():
   print("las escaleras llevan hacia abajo")
@@ -50,9 +71,8 @@ def pasillo_oriental():
     escaleras()
   elif direc == "regresar":
     entrada2()  
-
-
-
+ 
+espada = True
 def pasillo_occidental():
   print("")
   print ("Huele a paja y moho")
@@ -60,8 +80,62 @@ def pasillo_occidental():
   print("termina en una puerta sencilla de madera, que esta semi abierta a la siguiente habitación")
   print ("")
   opcion = input ("(entrar/regresar) :")
+  print("La habitación esta vacia")
+  if opcion == "entrar":
+   print ("Dentro de la habitació hay una gran caja hecha de barrotes de hierro, y una capa de paja mohosa en el fondo")
+   print ("Tumbado sobre la paja hay un niño al que reconoces como uno de los secuestrados de las granjas aledañas")
+   print ("Parece hambriento y está cubierto de mallugadoras. Al otro lado de la habitación hay una trampa colgando de un gancho")
+   print ("a unos pocos pies del suelo, lo suficientemente alto como para que llegue un goblin. Parece que el niño esta dormido.")
+   print ("")
+   desicion = input ("(tomar llave/despertar niño/salir) :")
+   
+   if espada:
+       if desicion == "tomar llave" and espada:
+           print ("Descuelgas la llave parece que en caja en la cerradura de la jaula")
+           desicion_nino = input ("(despertar niño/ignorar) :")
+           print("")
+           if desicion_nino == "introducir llave":
+               print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
+               print ("ten cuidado hay algo mas terrible que un goblin mas en lo profundo.")
+               print ("Toma esto logre robarla de un goblin pero no tube el valor de uzarla el niño te da una espada corta(fuerza +2)")
+               print ("luego sale corriendo en direccion a la salida")
+               print ("Regresas a la entrada")
+               personaje["fuerza"] += 2
+               entrada2()
+               espada = False
+           else:
+                entrada2()   
+       
+       
+       if desicion == "despertar niño" and espada:
+           print ("Despiertas el niño y sus ojo se abren lentamente ¡Gracias a los dioses! dice con voz ronca a travéz de sus labios")
+           print ("agrietados y ensangrentados.")
+           if niño:
+               disicion_nino = input ("(introducir llave/ignorar) :")
+           print("")
+           if desicion_nino == "introducir llave":
+               print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
+               print ("ten cuidado hay algo mas terrible que un goblin mas en lo profundo.")
+               print ("Toma esto logre robarla de un goblin pero no tube el valor de uzarla el niño te da una espada corta(fuerza +2)")
+               print ("luego sale corriendo en direccion a la salida")
+               personaje["fuerza"] += 2
+               entrada2()
+               espada = False
+        
+       else:
+          entrada2()
+           
+           
+       if desicion_niño == "ignorar":
+        entrada2()
+        
+        
+   if desicion == "salir":
+    entrada2()
+    
   if opcion == "regresar":
     entrada2()
+  
 
 
 def printestado():
@@ -70,7 +144,7 @@ def printestado():
 
 def goblin (vida,fuerza):
   print ("¡tiene",(vida),"puntos de vida!")
-  while vida > 0:
+  while personaje["vida"] > 0:
     accion = input("¿atacar,correr? :")
     print("Al goblin le quedan",(vida),"puntos de vida")
     printestado()
@@ -90,6 +164,7 @@ def goblin (vida,fuerza):
         print ("Mirando a tu alrededor puedes ver que el resto de la sala esta vacio, pero hay dos pasadizos que salen")
         print ("de la habitacion y se adentran más profundamente en el dungeon")
         personaje["dinero"] += 7
+        pocion_cura()
         direc = input ("(pasadizos oriental/pasadizo occidental) :")
         if direc == "pasadizo oriental":
           pasillo_oriental()
@@ -107,7 +182,9 @@ def goblin (vida,fuerza):
           print ("!El goblin ataca!")
         if personaje["vida"] <= 0:
           print ("El goblin te apuñala, mientras das tu ultimo aliento observas el goblin saquear tus pertenencias")
-          print ("Estas muerto")         
+          print ("Estas muerto")
+          printestado()
+          sys.exit()
     else:
       print("El goblin ataca!!")
       print ("Corres despavorido")
@@ -116,14 +193,14 @@ def goblin (vida,fuerza):
 def creaLootbox ():
   loot = random.randint(1,5)
   if loot % 2 == 0:
-    loot_vida = random.randint(1,10)
+    loot_vida = random.randint(1,6)
     loot_fuerza = random.randint(1,3)
     lootbox(loot_vida,loot_fuerza)
 
-def lootbox (vida, fuerza):
+def lootbox (vida,fuerza):
   print("¡Una Lootbox salvaje apareció!")
   print("¡Tiene",vida,"puntos de vida!")
-  while vida > 0:
+  while personaje["vida"] > 0:
     print("")
     accion = input("¿atacar/escapar? :")
     print ("")
@@ -133,6 +210,7 @@ def lootbox (vida, fuerza):
         print("Ganaste!!!!")
         print("Tu premio es 2 monedas")
         personaje["dinero"] += 2
+        entrada2()
       else:
         print("A la Lootboox le quedan",vida,"puntos de vida")
         print("La Lootbox ataca!!!!")
@@ -140,6 +218,7 @@ def lootbox (vida, fuerza):
           personaje["vida"] -= fuerza
           if personaje["vida"] <= 0:
             print("GAME OVER")
+            sys.exit()
         else:
           personaje["dinero"] -= fuerza
           
@@ -234,3 +313,4 @@ if respuesta == "si":
 
 else: 
   print("COBARDE!")
+
