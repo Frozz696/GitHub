@@ -22,6 +22,7 @@ def comprobar_lvl(personaje):
            personaje["vida"] += 3
            personaje["fuerza"] += 2
            print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"])
+           print ("Tus fuerzas aumentan!")
         
 
 def printestado():
