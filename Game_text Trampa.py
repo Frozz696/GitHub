@@ -50,7 +50,8 @@ def trampa():
        entrada2()
 
 def escalera():
-  print("las escaleras llevan hacia abajo")
+  print("las antiguas escalera de piedra etan resbaladizas por la humedad. Cuando llegas al fondo descubres que")
+  print ("terminan en una gran caverna natural llena de estalactitas y estalagamitas")
 
 def pasillo_oriental():
   print ("")
@@ -72,7 +73,7 @@ def pasillo_oriental():
   elif direc == "regresar":
     entrada2()  
  
-espada = True
+
 def pasillo_occidental():
   print("")
   print ("Huele a paja y moho")
@@ -80,62 +81,72 @@ def pasillo_occidental():
   print("termina en una puerta sencilla de madera, que esta semi abierta a la siguiente habitación")
   print ("")
   opcion = input ("(entrar/regresar) :")
-  print("La habitación esta vacia")
   if opcion == "entrar":
-   print ("Dentro de la habitació hay una gran caja hecha de barrotes de hierro, y una capa de paja mohosa en el fondo")
-   print ("Tumbado sobre la paja hay un niño al que reconoces como uno de los secuestrados de las granjas aledañas")
-   print ("Parece hambriento y está cubierto de mallugadoras. Al otro lado de la habitación hay una trampa colgando de un gancho")
-   print ("a unos pocos pies del suelo, lo suficientemente alto como para que llegue un goblin. Parece que el niño esta dormido.")
-   print ("")
-   desicion = input ("(tomar llave/despertar niño/salir) :")
-   
-   if espada:
-       if desicion == "tomar llave" and espada:
-           print ("Descuelgas la llave parece que en caja en la cerradura de la jaula")
-           desicion_nino = input ("(despertar niño/ignorar) :")
-           print("")
-           if desicion_nino == "introducir llave":
-               print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
-               print ("ten cuidado hay algo mas terrible que un goblin mas en lo profundo.")
-               print ("Toma esto logre robarla de un goblin pero no tube el valor de uzarla el niño te da una espada corta(fuerza +2)")
-               print ("luego sale corriendo en direccion a la salida")
-               print ("Regresas a la entrada")
-               personaje["fuerza"] += 2
-               entrada2()
-               espada = False
-           else:
-                entrada2()   
-       
-       
-       if desicion == "despertar niño" and espada:
-           print ("Despiertas el niño y sus ojo se abren lentamente ¡Gracias a los dioses! dice con voz ronca a travéz de sus labios")
-           print ("agrietados y ensangrentados.")
-           if niño:
-               disicion_nino = input ("(introducir llave/ignorar) :")
-           print("")
-           if desicion_nino == "introducir llave":
-               print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
-               print ("ten cuidado hay algo mas terrible que un goblin mas en lo profundo.")
-               print ("Toma esto logre robarla de un goblin pero no tube el valor de uzarla el niño te da una espada corta(fuerza +2)")
-               print ("luego sale corriendo en direccion a la salida")
-               personaje["fuerza"] += 2
-               entrada2()
-               espada = False
-        
-       else:
-          entrada2()
-           
-           
-       if desicion_niño == "ignorar":
-        entrada2()
-        
-        
-   if desicion == "salir":
-    entrada2()
-    
+    habitacion1()
   if opcion == "regresar":
     entrada2()
-  
+    
+def habitacion1_1():
+    print ("La habitacion ahora se encuento vacia, decides regresar a la entrada")
+    entrada2()
+    
+llave = True    
+def habitacion1():
+    print ("Dentro de la habitació hay una gran caja hecha de barrotes de hierro, y una capa de paja mohosa en el fondo")
+    print ("Parece hambriento y está cubierto de mallugadoras. Al otro lado de la habitación hay una trampa colgando de un gancho")
+    print ("a unos pocos pies del suelo, lo suficientemente alto como para que llegue un goblin. Parece que el niño esta dormido.")
+    print ("")
+    desicion = input ("(tomar llave/despertar niño/salir) :")
+    if desicion == "tomar llave" and llave: 
+        print ("Descuelgas la llave parece que en caja en la cerradura de la jaula")
+        llave = True
+        desicion_nino = input ("(despertar niño/ignorar) :")
+        print("")
+        espada()
+        
+    if desicion == "despertar niño" and llave:
+        print ("")
+        llave = True
+        despertar()
+    
+    if desicion == "ignorar":
+        print ("Estas muy asustado de caer en una trampa y regresas a la entrada")
+        print("")
+        entrada2()
+
+llave = True
+def espada():
+    if llave:
+        print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
+        print ("ten cuidado hay algo mas terrible que un goblin mas en lo profundo.")
+        print ("Toma esto logre robarla de un goblin pero no tube el valor de uzarla el niño te da una espada corta(fuerza +2)")
+        print ("luego sale corriendo en direccion a la salida")
+        print ("Regresas a la entrada")
+        personaje["fuerza"] += 2
+        llave = False
+        habitacion1_1()
+<
+llave = True   
+def despertar():
+    if llave:
+        print ("Despiertas el niño y sus ojo se abren lentamente ¡Gracias a los dioses! dice con voz ronca a travéz de sus labios,tomas la llave temeroso de caer en una trampa")
+        print ("agrietados y ensangrentados.")
+        print ("Tomas la llave cautelso de que todo no sea una trampa")
+        disicion_nino = input ("(introducir llave/ignorar) :")
+        print("")
+        if desicion_nino == "introducir llave":
+            print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
+            print ("ten cuidado hay algo mas terrible que un goblin mas en lo profundo.")
+            print ("Toma esto logre robarla de un goblin pero no tube el valor de uzarla el niño te da una espada corta(fuerza +2)")
+            print ("luego sale corriendo en direccion a la salida")
+            personaje["fuerza"] += 2
+            habitacion1_1()
+            llave = False
+    
+        else:
+            ("Ignoras las suplicas del niño y regresas a la entrada")
+            entrada2()
+ 
 
 
 def printestado():
@@ -143,10 +154,10 @@ def printestado():
 
 
 def goblin (vida,fuerza):
-  print ("¡tiene",(vida),"puntos de vida!")
+  print ("¡tiene",vida,"puntos de vida!")
   while personaje["vida"] > 0:
     accion = input("¿atacar,correr? :")
-    print("Al goblin le quedan",(vida),"puntos de vida")
+    print("Al goblin le quedan",vida,"puntos de vida")
     printestado()
     personaje["vida"] -= fuerza
     if accion == "atacar":
