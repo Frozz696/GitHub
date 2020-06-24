@@ -124,7 +124,9 @@ def pasillo_occidental():
     entrada2()
     
 def habitacion1_1():
-    print ("La habitacion ahora se encuento vacia, decides regresar a la entrada")
+    if personaje ["eventos"]["espada"]:
+        print ("La habitacion ahora se encuento vacia, decides regresar a la entrada")
+#    personaje={"eventos":{"espada" : False}}
     entrada2()
     
 def habitacion1():
@@ -159,7 +161,7 @@ def espada():
         print ("Regresas a la entrada")
         personaje["fuerza"] += 2
         print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"])
-        espada = False
+#        personaje={"eventos":{"espada" : True}}
         habitacion1_1()
 
 def despertar():
@@ -176,7 +178,7 @@ def despertar():
             print ("luego sale corriendo en direccion a la salida")
             personaje["fuerza"] += 2
             print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"]) 
-            espada = False
+#            personaje={"eventos":{"espada" : True}}
             habitacion1_1()
     
         else:
