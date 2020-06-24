@@ -122,8 +122,6 @@ def pasillo_occidental():
     habitacion1()
   if opcion == "regresar":
     entrada2()
-  else:
-      return
     
 def habitacion1_1():
     print ("La habitacion ahora se encuento vacia, decides regresar a la entrada")
@@ -135,22 +133,22 @@ def habitacion1():
     print ("a unos pocos pies del suelo, lo suficientemente alto como para que llegue un goblin. Parece que el niño esta dormido.")
     print ("")
     desicion = input ("(tomar llave/despertar niño/salir) :")
-    if desicion == "tomar llave":
-        despertar()
+        if desicion == "tomar llave":
+            despertar()
+            
+            print ("Descuelgas la llave parece que en caja en la cerradura de la jaula")
+            desicion_nino = input ("(despertar niño/ignorar) :")
+            print("")
+            espada()
+            
+        if desicion == "despertar niño":
+            print ("")
+            despertar()
         
-        print ("Descuelgas la llave parece que en caja en la cerradura de la jaula")
-        desicion_nino = input ("(despertar niño/ignorar) :")
-        print("")
-        espada()
-        
-    if desicion == "despertar niño":
-        print ("")
-        despertar()
-    
-    if desicion == "ignorar":
-        print ("Estas muy asustado de caer en una trampa y regresas a la entrada")
-        print("")
-        entrada2()
+        if desicion == "ignorar":
+            print ("Estas muy asustado de caer en una trampa y regresas a la entrada")
+            print("")
+            entrada2()
 
 def espada():
     if personaje ["eventos"]["espada"]:
