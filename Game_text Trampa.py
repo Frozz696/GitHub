@@ -14,15 +14,17 @@ def recompensa(personaje):
     personaje == random.randint(1,3)
     print ("Encuentras una pócima de un aspegto repugnate")
     pocion_stats()
+    print ("")
     
 def comprobar_lvl(personaje):
     if personaje["xpSiguientelvl"] >= personaje["xp"]:
         if personaje["nivel"] + 1:
-           personaje["xpSiguientelvl"] = 210
-           personaje["vida"] += 3
-           personaje["fuerza"] += 2
+           personaje["xpSiguientelvl"] = 0
+           personaje["vida"] += 2
+           personaje["fuerza"] += 1
            print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"])
            print ("Tus fuerzas aumentan!")
+           print("")
         
 
 def printestado():
@@ -43,7 +45,6 @@ def pocion_stats():
 def entrada2():
   print ("Etrada")
   print ("")
-  printestado()
   print ("El pasadizo oriental esta lleno de telarañas y parece q no se ha usado desde mucho tiempo")
   print ("")
   print ("el pasadizo occidental huele a paja y moho, pero esta limpio de telarañas")
