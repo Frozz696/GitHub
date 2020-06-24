@@ -129,7 +129,7 @@ def habitacion1_1():
     print ("La habitacion ahora se encuento vacia, decides regresar a la entrada")
     entrada2()
     
-llave = True    
+llave = (True)  
 def habitacion1():
     print ("Dentro de la habitació hay una gran caja hecha de barrotes de hierro, y una capa de paja mohosa en el fondo")
     print ("Parece hambriento y está cubierto de mallugadoras. Al otro lado de la habitación hay una trampa colgando de un gancho")
@@ -138,14 +138,14 @@ def habitacion1():
     desicion = input ("(tomar llave/despertar niño/salir) :")
     if desicion == "tomar llave" and llave: 
         print ("Descuelgas la llave parece que en caja en la cerradura de la jaula")
-        llave = True
+        llave = (True)
         desicion_nino = input ("(despertar niño/ignorar) :")
         print("")
         espada()
         
     if desicion == "despertar niño" and llave:
         print ("")
-        llave = True
+        llave = (True)
         despertar()
     
     if desicion == "ignorar":
@@ -153,7 +153,7 @@ def habitacion1():
         print("")
         entrada2()
 
-llave = True
+llave = (True)
 def espada():
     if llave:
         print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
@@ -162,10 +162,10 @@ def espada():
         print ("luego sale corriendo en direccion a la salida")
         print ("Regresas a la entrada")
         personaje["fuerza"] += 2
-        llave = False
+        llave = [False]
         habitacion1_1()
 
-llave = True   
+llave = (True)   
 def despertar():
     if llave:
         print ("Despiertas el niño y sus ojo se abren lentamente ¡Gracias a los dioses! dice con voz ronca a travéz de sus labios,tomas la llave temeroso de caer en una trampa")
@@ -180,7 +180,7 @@ def despertar():
             print ("luego sale corriendo en direccion a la salida")
             personaje["fuerza"] += 2
             habitacion1_1()
-            llave = False
+            llave = [False]
     
         else:
             ("Ignoras las suplicas del niño y regresas a la entrada")
@@ -309,7 +309,7 @@ def entrada ():
      print("")
      print("Estas muerto")
       
-print("LA CRIPTA DEL REY ESQUELETO")
+print("\033[1m"+"LA CRIPTA DEL REY ESQUELETO"+"\033[0m")
 print("---------------------------")
 print("                           ")
 print("Eres un valiente guerrero procedente del pueblo \
