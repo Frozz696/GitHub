@@ -15,10 +15,17 @@ def recompensa(personaje):
     print ("Encuentras una pócima de un aspegto repugnate")
     pocion_stats()
     
-    
+def comprobar_lvl(personaje):
+    if personaje["xpSiguientelvl"] >= personaje["xp"]:
+        if personaje["nivel"] + 1:
+           personaje["xpSiguientelvl"] = 210
+           personaje["vida"] += 3
+           personaje["fuerza"] += 2
+           print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"])
+        
 
 def printestado():
- print("vida: ",personaje["vida"],"dinero: ",personaje["dinero"])
+    print("vida: ",personaje["vida"],"dinero: ",personaje["dinero"])
 
 def pocion_cura():
     cura = random.randint(0,1)
@@ -200,6 +207,10 @@ def goblin (vida,fuerza):
         print ("de la habitacion y se adentran más profundamente en el dungeon")
         personaje["dinero"] += 7
         pocion_cura()
+        xp = random.randint(8,12)
+        personaje["xpSiguientelvl"] += xp
+        print("XP: ",personaje["xpSiguientelvl"])
+        comprobar_lvl(personaje)
         direc = input ("(pasadizos oriental/pasadizo occidental) :")
         if direc == "pasadizo oriental":
           pasillo_oriental()
@@ -246,6 +257,10 @@ def lootbox (vida,fuerza):
         print("Tu premio es 2 monedas")
         recompensa(personaje)
         personaje["dinero"] += 2
+        xp = random.randint(8,12)
+        personaje["xpSiguientelvl"] += xp
+        comprobar_lvl(personaje)
+        print("XP: ",personaje["xpSiguientelvl"])
         entrada2()
       else:
         print("A la Lootboox le quedan",vida,"puntos de vida")
@@ -319,21 +334,34 @@ if opcion == "airon":
     personaje["vida"] = 13
     personaje["dinero"] = 3
     personaje["fuerza"] = 6
+    personaje["xpSiguientelvl"] = 0
+    personaje["xp"] = 90
+    personaje["nivel"] = 1
 elif opcion == "clair":
     personaje["nombre"] = "clair"
     personaje["vida"] = 16
     personaje["dinero"] = 3
     personaje["fuerza"] = 4
+    personaje["xpSiguientelvl"] = 0
+    personaje["xp"] = 90
+    personaje["nivel"] = 1
 elif opcion == "varg":
     personaje["nombre"] = "varg"
     personaje["vida"] = 12
     personaje["dinero"] = 3
     personaje["fuerza"] = 6
+    personaje["xpSiguientelvl"] = 0
+    personaje["xp"] = 90
+    personaje["nivel"] = 1
 elif opcion == "pat":
     personaje["nombre"] = "pat"
     personaje["vida"] = 17
     personaje["dinero"] = 3
     personaje["fuerza"] = 3
+    personaje["xpSiguientelvl"] = 0
+    personaje["xp"] = 90
+    personaje["nivel"] = 1
+
 
 print(" ¡Éste debe ser el dungeon!")
 print("")
