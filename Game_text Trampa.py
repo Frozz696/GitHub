@@ -6,12 +6,36 @@ personaje={}
 
 Equipo = {"Armadura":"Cota de mallas","Arma":"Antigua espada larga"}
 
+def recompensa(personaje):
+    personaje == random.randint(1,3)
+    print ("Encuentras una pócima curativa")
+    pocion_cura()
+    
+    personaje == random.randint(1,3)
+    print ("Encuentras una pócima de un aspegto repugnate")
+    pocion_stats()
+    
+    
+
+def printestado():
+ print("vida: ",personaje["vida"],"dinero: ",personaje["dinero"])
+
 def pocion_cura():
-    cura = random.randint(1,6)
+    cura = random.randint(0,1)
     personaje["vida"] += cura
+    print("vida: ",personaje["vida"])
+    print ("")
+
+def pocion_stats():
+    stats = random.randint(0,1)
+    personaje["fuerza"] += stats
+    print("fuerza: ",personaje["fuerza"])
+    print("")
 
 def entrada2():
   print ("Etrada")
+  print ("")
+  printestado()
   print ("El pasadizo oriental esta lleno de telarañas y parece q no se ha usado desde mucho tiempo")
   print ("")
   print ("el pasadizo occidental huele a paja y moho, pero esta limpio de telarañas")
@@ -22,11 +46,13 @@ def entrada2():
   elif direc == "pasadizo occidental":
     pasillo_occidental()
 
+
 def trampa():
   print ("Viendo que no hay monstruos en la habitación, avanzas hacia las escaleras mientras vas recogiendo monedas")
   print ("por el camino. A media habitación tu pie se engancha en un alambre oculto y de repente un chorro de llamas")
   print ("sa disparado de la boca del demonio, ¡directamente hacia ti!")
   daño_trampa = random.randint(2,4)
+  creaLootbox()
   personaje["vida"] -= daño_trampa
   printestado()
   if personaje["vida"] <= 0: 
@@ -49,6 +75,8 @@ def trampa():
       elif direc == "bajar escaleras":
        entrada2()
 
+    
+    
 def escalera():
   print("las antiguas escalera de piedra etan resbaladizas por la humedad. Cuando llegas al fondo descubres que")
   print ("terminan en una gran caverna natural llena de estalactitas y estalagamitas")
@@ -85,6 +113,8 @@ def pasillo_occidental():
     habitacion1()
   if opcion == "regresar":
     entrada2()
+  else:
+      return
     
 def habitacion1_1():
     print ("La habitacion ahora se encuento vacia, decides regresar a la entrada")
@@ -125,7 +155,7 @@ def espada():
         personaje["fuerza"] += 2
         llave = False
         habitacion1_1()
-<
+
 llave = True   
 def despertar():
     if llave:
@@ -147,12 +177,6 @@ def despertar():
             ("Ignoras las suplicas del niño y regresas a la entrada")
             entrada2()
  
-
-
-def printestado():
- print("vida: ",personaje["vida"],"dinero: ",personaje["dinero"])
-
-
 def goblin (vida,fuerza):
   print ("¡tiene",vida,"puntos de vida!")
   while personaje["vida"] > 0:
@@ -202,10 +226,10 @@ def goblin (vida,fuerza):
       entrada2()
 
 def creaLootbox ():
-  loot = random.randint(1,5)
-  if loot % 2 == 0:
-    loot_vida = random.randint(1,6)
-    loot_fuerza = random.randint(1,3)
+  loot = random.randint(1,12)
+  if loot % 3 == 0:
+    loot_vida = random.randint(9,16)
+    loot_fuerza = random.randint(2,4)
     lootbox(loot_vida,loot_fuerza)
 
 def lootbox (vida,fuerza):
@@ -220,6 +244,7 @@ def lootbox (vida,fuerza):
       if vida <= 0:
         print("Ganaste!!!!")
         print("Tu premio es 2 monedas")
+        recompensa(personaje)
         personaje["dinero"] += 2
         entrada2()
       else:
@@ -256,7 +281,6 @@ def entrada ():
   print("")
   
   encuentro = input ("¿sacar arma/Hablar? :")
-  
   if encuentro == "sacar arma":
    print("Sabes que el goblin es una criatura desagradable y maligna que deves matar antes de continuar")
    goblin_vida = random.randint (8,19)
@@ -310,8 +334,7 @@ elif opcion == "pat":
     personaje["vida"] = 17
     personaje["dinero"] = 3
     personaje["fuerza"] = 3
-    
-    
+
 print(" ¡Éste debe ser el dungeon!")
 print("")
 print("¿Quieres armarte de valor y entrar en el tunel, ",personaje["nombre"],"?")
@@ -324,4 +347,7 @@ if respuesta == "si":
 
 else: 
   print("COBARDE!")
+
+
+
 
