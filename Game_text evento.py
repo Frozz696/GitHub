@@ -133,7 +133,7 @@ def habitacion1():
     print ("a unos pocos pies del suelo, lo suficientemente alto como para que llegue un goblin. Parece que el niño esta dormido.")
     print ("")
     desicion = input ("(tomar llave/despertar niño/salir) :")
-        if desicion == "tomar llave":
+    if desicion == "tomar llave":
             despertar()
             
             print ("Descuelgas la llave parece que en caja en la cerradura de la jaula")
@@ -141,11 +141,11 @@ def habitacion1():
             print("")
             espada()
             
-        if desicion == "despertar niño":
+    if desicion == "despertar niño":
             print ("")
             despertar()
         
-        if desicion == "ignorar":
+    if desicion == "ignorar":
             print ("Estas muy asustado de caer en una trampa y regresas a la entrada")
             print("")
             entrada2()
