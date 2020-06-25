@@ -119,15 +119,18 @@ def pasillo_occidental():
   print ("")
   opcion = input ("(entrar/regresar) :")
   if opcion == "entrar":
-    habitacion1()
+      if personaje["item"] == 0:
+          habitacion1()
+          
+      elif personaje["item"] == 1:
+          habitacion1_1()
+          
   if opcion == "regresar":
     entrada2()
     
 def habitacion1_1():
-    if personaje ["eventos"]["espada"]:
         print ("La habitacion ahora se encuento vacia, decides regresar a la entrada")
-#    personaje={"eventos":{"espada" : False}}
-    entrada2()
+        entrada2()
     
 def habitacion1():
     print ("Dentro de la habitació hay una gran caja hecha de barrotes de hierro, y una capa de paja mohosa en el fondo")
@@ -153,19 +156,16 @@ def habitacion1():
             entrada2()
 
 def espada():
-    if personaje ["eventos"]["espada"]:
         print ("¡Gracias! gime el niño cuando le abres la puerta de la jaula. Llevo aqui encerrado muchos dias,")
         print ("ten cuidado hay algo mas terrible que un goblin mas en lo profundo.")
         print ("Toma esto logre robarla de un goblin pero no tube el valor de uzarla el niño te da una espada corta(fuerza +2)")
         print ("luego sale corriendo en direccion a la salida")
         print ("Regresas a la entrada")
-        personaje["fuerza"] += 2
+        personaje["item"] = 1
         print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"])
-#        personaje={"eventos":{"espada" : True}}
         habitacion1_1()
 
 def despertar():
-    if personaje ["eventos"]["espada"]:
         print ("Despiertas el niño y sus ojo se abren lentamente ¡Gracias a los dioses! dice con voz ronca a travéz de sus labios,tomas la llave temeroso de caer en una trampa")
         print ("agrietados y ensangrentados.")
         print ("Tomas la llave cautelso de que todo no sea una trampa")
@@ -178,7 +178,7 @@ def despertar():
             print ("luego sale corriendo en direccion a la salida")
             personaje["fuerza"] += 2
             print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"]) 
-#            personaje={"eventos":{"espada" : True}}
+            personaje["item"] = 1
             habitacion1_1()
     
         else:
@@ -338,6 +338,7 @@ if opcion == "airon":
     personaje["xpSiguientelvl"] = 0
     personaje["xp"] = 90
     personaje["nivel"] = 1
+    personaje["item"] = 0
 elif opcion == "clair":
     personaje["nombre"] = "clair"
     personaje["vida"] = 16
@@ -346,6 +347,7 @@ elif opcion == "clair":
     personaje["xpSiguientelvl"] = 0
     personaje["xp"] = 90
     personaje["nivel"] = 1
+    personaje["item"] = 0
 elif opcion == "varg":
     personaje["nombre"] = "varg"
     personaje["vida"] = 12
@@ -354,6 +356,7 @@ elif opcion == "varg":
     personaje["xpSiguientelvl"] = 0
     personaje["xp"] = 90
     personaje["nivel"] = 1
+    personaje["item"] = 0
 elif opcion == "pat":
     personaje["nombre"] = "pat"
     personaje["vida"] = 17
@@ -362,6 +365,7 @@ elif opcion == "pat":
     personaje["xpSiguientelvl"] = 0
     personaje["xp"] = 90
     personaje["nivel"] = 1
+    personaje["item"] = 0 
 
 print(" ¡Éste debe ser el dungeon!")
 print("")
