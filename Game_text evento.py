@@ -88,7 +88,26 @@ def trampa():
     
 def escalera():
   print("las antiguas escalera de piedra etan resbaladizas por la humedad. Cuando llegas al fondo descubres que")
-  print ("terminan en una gran caverna natural llena de estalactitas y estalagamitas")
+  print ("terminan en una gran caverna natural llena de estalactitas y estalagamitas.")
+  print ("Puedes ver charcos superficiales de agua en el suelo, y una gran grieta en la pared del fondo que parce un pasadizo.")
+  print ("A medida que cruzas la habitación algo no te cuadra. Te detienes para mirar a tu alrededor")
+  resultado = random.randint(1,10)
+  if resultado <= 6:
+      print ("De repente te das cuenta que te estaba preocupando y te detienes. justo donde ivas a poner el pie hay una mancha de moho")
+      print ("de color amarillo pegada a la piedra. Ya has oido historias sobre estas cosas: moho amarillo que crece en cuevas parece inofensivo")
+      print ("hasta que lo molestas, momento en el que libera millones de esporas venenozas que ahogan a exploradores imprudentes")
+      print ("Retiras el pie y das vuelta con cuidado para rodear el moho. Habiendo evitado el desastre, te dirigis hacia la grieta del fondo")
+      print ("y descubres que realmente es un pasadizo. Mas adelantepuedes ver una luz parpadeante, puedes oir el sonido de huesos entrechocando")
+      print ("")
+      lucha = input ("(entrar/regresar) :")
+      if lucha == "entrar":
+          entrada2()
+      
+      elif lucha == "regresa":
+          entrada2()
+  
+  if resultado >= 5:
+      entrada2()
 
 def pasillo_oriental():
   print ("")
@@ -106,7 +125,7 @@ def pasillo_oriental():
     trampa()
   elif direc == "bajar escaleras":
     print("")
-    escaleras()
+    escalera()
   elif direc == "regresar":
     entrada2()  
  
