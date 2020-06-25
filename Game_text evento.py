@@ -92,7 +92,7 @@ def escalera():
   print ("Puedes ver charcos superficiales de agua en el suelo, y una gran grieta en la pared del fondo que parce un pasadizo.")
   print ("A medida que cruzas la habitación algo no te cuadra. Te detienes para mirar a tu alrededor")
   resultado = random.randint(1,10)
-  if resultado <= 6:
+  if resultado >= 5:
       print ("De repente te das cuenta que te estaba preocupando y te detienes. justo donde ivas a poner el pie hay una mancha de moho")
       print ("de color amarillo pegada a la piedra. Ya has oido historias sobre estas cosas: moho amarillo que crece en cuevas parece inofensivo")
       print ("hasta que lo molestas, momento en el que libera millones de esporas venenozas que ahogan a exploradores imprudentes")
@@ -106,8 +106,24 @@ def escalera():
       elif lucha == "regresa":
           entrada2()
   
-  if resultado >= 5:
-      entrada2()
+  if resultado <= 4:
+      print ("Aunque no puedes quitarte de ensima la sensación de que algo anda mal, te armas de valor y sigues adelante. No obstante,")
+      print ("cuando con tinuas con tu camino, tu bota pisa un trozo informe de moho que crece en la piedra.")
+      print ("De repente se produce se produce un gran sonido sibilante, y el aire atu alrededor se llena de esporas amarillas")
+      print ("que aparecen en todas partes, te llenan la boca y la nariz. Las esporas te hacen toser y te ahogan, haciendo que")
+      print ("te lloren los ojos, y sientas debilidad en los brazos.")
+      print ("pizaste un hongo toxico.")
+      cura = random.randint(1,3)
+      personaje["vida"] -= cura
+      print("vida: ",personaje["vida"])
+      print ("")
+      if personaje["vida"] >= 0:
+          print ("Las esporas se asientan y puedes ver de nuevo atravez de tus lagrimas teñidas de amarillo,")
+          print ("llegas a la grieta del fondo del fondo de la habitación. Alli")
+          print ("descubres que realmente es un pasadizo. Mas adelantepuedes ver una luz parpadeante, puedes oir el sonido de huesos entrechocando")
+      if personaje["vida"] <= 0:
+            print("GAME OVER")
+      
 
 def pasillo_oriental():
   print ("")
