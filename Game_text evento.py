@@ -2,9 +2,70 @@ import random
 import sys
 import os
 
-personaje={"eventos":{"espada" : True}}
+personaje={}
 
 Equipo = {"Armadura":"Cota de mallas","Arma":"Antigua espada larga"}
+
+def creaRey():
+    reyEsqueleto_vida = random.randint(20,40)
+    reyEsqueleto_fuerza = random.randint(4,8)
+    reyEsqueleto(reyEsqueleto_vida,reyEsqueleto_fuerza)
+
+def reyEsqueleto(vida,fuerza):
+    print("¡Tiene",vida,"puntos de vida!")
+    while personaje["vida"] > 0:
+        print("")
+        accion = input("atacar :")
+        print ("")
+        if accion == "atacar":
+            print("El rey esqueleto le quedan",vida,"puntos de vida")
+            print("El rey esqueleto ataca!!!!")
+            print("¡El rey esqueleto arremete con su espada!")
+            personaje["vida"] -= fuerza
+            printestado()
+            vida = vida - personaje["fuerza"]
+            if vida <= 0:
+                print("Ganaste!!!!")
+                print("Tu premio es 2 monedas")
+                recompensa(personaje)
+                personaje["dinero"] += 50
+                xp = random.randint(20,30)
+                personaje["xpSiguientelvl"] += xp
+                comprobar_lvl(personaje)
+                print("XP: ",personaje["xpSiguientelvl"])
+                print ("Con el ultimo golpe de tu arma, el esqueleto se derrumba")
+                print ("Fin")
+                sys.exit()
+            
+        else:
+            print("El rey esqueleto le quedan",vida,"puntos de vida")
+            print("El rey esqueleto ataca!!!!")
+            printestado()
+            if personaje["dinero"] <= 0:
+                personaje["vida"] -= fuerza
+                if personaje["vida"] <= 0:
+                    print("GAME OVER")
+                    sys.exit()
+
+
+
+
+def sala_jefe():
+    print("el pasadizo termina en una enome sala con el techo abovedado. Las escaleras del otro lado de la habitación")
+    print("suben hasta una plataforma, encima de la cual se alza un trono dorado decorado con diamantes y rubies brillantes.")
+    print("En el trono se sienta un esqueleto vestido con armadura de un rey, vieja y oxidad, provisto de una espada larga")
+    print("que brilla estrañamente en sus huesudas manos")
+    print("La cabeza del esqueleto se gira extrañamente hacia ti, con sus orbitas vacias encendiendose con llasmas rojas")
+    print("Su mandivula se abre en una sonrisa horrible mientras levanta la espada largas y te señala con ella.")
+    if personaje["item"] == 0:
+        print ("Aferrando la espada larga de tu padre, avanzas hacia el esqueleto ")
+        creaRey()
+        
+    if personaje["item"] == 1:
+        print ("Recordando la advertencia del pequeño granjero, tomas tus armas y te avalanzas sobre el esqueleto")
+        creaRey()
+
+
 
 def recompensa(personaje):
     personaje == random.randint(1,3)
@@ -25,7 +86,6 @@ def comprobar_lvl(personaje):
            print("vida: ",personaje["vida"],"fuerza: ",personaje["fuerza"])
            print ("Tus fuerzas aumentan!")
            print("")
-        
 
 def printestado():
     print("vida: ",personaje["vida"],"dinero: ",personaje["dinero"])
@@ -55,7 +115,6 @@ def entrada2():
   elif direc == "pasadizo occidental":
     pasillo_occidental()
 
-
 def trampa():
   print ("Viendo que no hay monstruos en la habitación, avanzas hacia las escaleras mientras vas recogiendo monedas")
   print ("por el camino. A media habitación tu pie se engancha en un alambre oculto y de repente un chorro de llamas")
@@ -84,8 +143,6 @@ def trampa():
       elif direc == "bajar escaleras":
        entrada2()
 
-    
-    
 def escalera():
   print("las antiguas escalera de piedra etan resbaladizas por la humedad. Cuando llegas al fondo descubres que")
   print ("terminan en una gran caverna natural llena de estalactitas y estalagamitas.")
@@ -101,7 +158,7 @@ def escalera():
       print ("")
       lucha = input ("(entrar/regresar) :")
       if lucha == "entrar":
-          entrada2()
+          sala_jefe()
       
       elif lucha == "regresa":
           entrada2()
@@ -116,14 +173,15 @@ def escalera():
       cura = random.randint(1,3)
       personaje["vida"] -= cura
       print("vida: ",personaje["vida"])
+      sala_jefe()
       print ("")
       if personaje["vida"] >= 0:
           print ("Las esporas se asientan y puedes ver de nuevo atravez de tus lagrimas teñidas de amarillo,")
           print ("llegas a la grieta del fondo del fondo de la habitación. Alli")
           print ("descubres que realmente es un pasadizo. Mas adelantepuedes ver una luz parpadeante, puedes oir el sonido de huesos entrechocando")
+          sala_jefe()
       if personaje["vida"] <= 0:
             print("GAME OVER")
-      
 
 def pasillo_oriental():
   print ("")
@@ -145,7 +203,6 @@ def pasillo_oriental():
   elif direc == "regresar":
     entrada2()  
  
-
 def pasillo_occidental():
   print("")
   print ("Huele a paja y moho")
@@ -342,8 +399,8 @@ def entrada ():
      print("El goblin se abalanza sobre ti, corres embusca de la salida pero te tropiesas con las piedras el goblin salta a tu espalda y te apuñala")
      print("")
      print("Estas muerto")
-      
-print("\033[1m"+"LA CRIPTA DEL REY ESQUELETO"+"\033[0m")
+    
+print("LA CRIPTA DEL REY ESQUELETO")
 print("---------------------------")
 print("                           ")
 print("Eres un valiente guerrero procedente del pueblo \
