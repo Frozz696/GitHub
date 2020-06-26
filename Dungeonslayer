@@ -1,5 +1,7 @@
 import random
 
+personaje = {}
+
 print("¿Qiuen quieres ser?")
 
 opcion = input ("(airon,clair,varg,pat) :")
@@ -20,6 +22,7 @@ if opcion == "airon":
     personaje["xp"] = 0
     personaje["nivel"] = 1
     personaje["item"] = 0
+    personaje["dinero"]
 if opcion == "clair":
     personaje["nombre"] = "clair"
     personaje["raza"] = "humano"
@@ -37,6 +40,7 @@ if opcion == "clair":
     personaje["xp"] = 0
     personaje["nivel"] = 0
     personaje["item"] = 0
+    personaje["dinero"]
 if opcion == "varg":
     personaje["nombre"] = "varg"
     personaje["clase"] = "explorador"
@@ -54,6 +58,7 @@ if opcion == "varg":
     personaje["xp"] =0
     personaje["nivel"] = 0
     personaje["item"] = 0
+    personaje["dinero"]
 if opcion == "pat":
     personaje["nombre"] = "pat"
     personaje["raza"] = "elfo"
@@ -71,13 +76,17 @@ if opcion == "pat":
     personaje["xp"] = 0
     personaje["nivel"] = 0
     personaje["item"] = 0
+    personaje["dinero"]
 else:
     print ("datos incorrectos" )
     
-
-    
-
-
+puntos_de_golpe = (personaje["cuerpo"]+personaje["constitucion"]+10)
+defenza = (personaje["cuerpo"]+personaje["constitucion"])
+iniciativa = (personaje["movilida"]/2+1) 
+ATK_cuerpo = (personaje["cuerpo"]+personaje["fuerza"])
+ATK_distancia = (personaje["movilida"]+personaje["dextresa"])
+hechiceria = (personaje[" mente"]+personaje["aura"])
+hechizo_dirigido = (personaje[" mente"]+personaje["dextresa"])
 
 
 
