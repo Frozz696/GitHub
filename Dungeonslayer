@@ -81,15 +81,23 @@ else:
     print ("datos incorrectos" )
     
 puntos_de_golpe = (personaje["cuerpo"]+personaje["constitucion"]+10)
-defenza = (personaje["cuerpo"]+personaje["constitucion"])
+defensa = (personaje["cuerpo"]+personaje["constitucion"])
 iniciativa = (personaje["movilida"]//2+1) 
 ATK_cuerpo = (personaje["cuerpo"]+personaje["fuerza"])
 ATK_distancia = (personaje["movilida"]+personaje["dextresa"])
 hechiceria = (personaje[" mente"]+personaje["aura"])
 hechizo_dirigido = (personaje[" mente"]+personaje["dextresa"])
 
-print (iniciativa)
-
+def estatus():
+    print ("Puntos de golpe",puntos_de_golpe)
+    print ("Defensa",defensa)
+    print ("Iniciativa",iniciativa)
+    print ("Daño cuerpo a cuerpo",ATK_cuerpo)
+    print ("Daño a distancia",ATK_distancia)
+    print ("Hechiceria",hechiceria)
+    print ("Hechizos dirigidos",hechizo_dirigido)
+    
+print(estatus())
 
 
 
